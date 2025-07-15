@@ -126,7 +126,6 @@ const Dashboard = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              width: "100%",
               maxWidth: "25rem",
               height: "25rem",
               width: { xs: "100%", sm: "50%" },
