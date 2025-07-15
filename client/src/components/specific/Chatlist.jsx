@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ChatItem from "../shared/ChatItem";
+import ChatItem from "../shared/Chatitem";
 import { motion } from "framer-motion";
 
 const Chatlist = ({
