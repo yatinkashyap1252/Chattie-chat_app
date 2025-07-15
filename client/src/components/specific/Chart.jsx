@@ -38,7 +38,7 @@ const LineChart = ({value=[]}) => {
         datasets: [
             {
                 data: value,
-                label: "Revenue",
+                label: "Message",
                 fill: true,
                 backgroundColor: "rgba(75,192,192,0.1)",
                 borderColor: "rgba(75,125,192,1)"

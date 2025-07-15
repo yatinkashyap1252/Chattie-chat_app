@@ -135,14 +135,14 @@ const Chat = ({ chatId, user }) => {
     <Skeleton />
   ) : (
     <Fragment>
-      <Box sx={{ border: "5px solid rgb(0,0,0)" }}>
+      <Box sx={{ border: "5px solid rgb(0,0,0)",background:"#5d00ffff" }}>
         <Stack
           ref={containerRef}
           boxSizing={"border-box"}
           spacing={"1rem"}
           padding={"1rem"}
           bgcolor={"#2f2b36"}
-          height={"91.5vh"}
+          height={"70vh"}
           sx={{ overflowX: "hidden", overflowY: "auto" }}
         >
           {allMessages.map((i) => (
@@ -155,13 +155,13 @@ const Chat = ({ chatId, user }) => {
 
       <form
         onSubmit={submitHandler}
-        style={{ borderRadius: "15px", background: "white", padding: "5px 0" }}
+        style={{ borderRadius: "25px", background: "black", padding: "5px 0" }}
       >
         <Stack
           overflow={"hidden"}
-          height={"6vh"}
+          height={"7vh"}
           spacing={"5px"}
-          padding={"5px"}
+          padding={"0 5px"}
           direction={"row"}
           display={"flex"}
           alignItems={"center"}
@@ -169,7 +169,7 @@ const Chat = ({ chatId, user }) => {
           <IconButton
             style={{
               background: "linear-gradient(#4040ff, #590796)",
-              color: "black",
+              color: "white",
             }}
             onClick={handleFile}
           >
@@ -185,7 +185,7 @@ const Chat = ({ chatId, user }) => {
             type="submit"
             style={{
               background: "linear-gradient(#4040ff, #590796)",
-              color: "black",
+              color: "white",
             }}
           >
             <SendIcon />

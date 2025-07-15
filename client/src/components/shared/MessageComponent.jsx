@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import moment from "moment";
 import { fileFormat } from "../../libs/features";
 import RenderAttachment from "./RenderAttachment";
+import { Document, Page, pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 
 const MessageComponent = ({ message, user }) => {
   const { sender, content, attachments = [], createdAt } = message;

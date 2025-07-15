@@ -92,6 +92,9 @@ const NewGroup = () => {
           InputLabelProps={{
             style: { color: "white", fontSize: "20px", fontWeight: "700" },
           }}
+          inputProps={{
+            style:{color:"white"}
+          }}
           value={groupName.value}
           onChange={groupName.changeHandler}
         />

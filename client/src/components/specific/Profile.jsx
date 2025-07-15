@@ -19,11 +19,11 @@ const Profile = ({ user }) => {
       animate={{ x: 0, opacity: 1 }} // Slide to original position
       transition={{ type: "spring", stiffness: 100, damping: 20 }} // Smooth animation
       sx={{
-        padding: "2rem",
+        // padding: "2rem",
         borderRadius: "16px",
-        backgroundColor: "#1f1f2f", // Dark background for profile
-        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
-        maxHeight: "calc(100vh - 40px)", // Ensure it doesn't overlap footer (adjust value as needed)
+        // backgroundColor: "#1f1f2f", // Dark background for profile
+        // boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
+        maxHeight: "calc(100vh - 150px)", // Ensure it doesn't overlap footer (adjust value as needed)
         overflowY: "auto", // Enable scrolling for overflow content
         width: "100%",
         "&::-webkit-scrollbar": {

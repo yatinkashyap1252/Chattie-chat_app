@@ -9,8 +9,13 @@ import { TryCatch } from "../middlewares/error.js";
 import { Chat } from "../models/chat.js";
 import { Message } from "../models/message.js";
 import { User } from "../models/user.js";
-import { deleFilesFromCloudinary, emitEvent, uploadToCloudinary } from "../utils/features.js";
+import {
+  deleFilesFromCloudinary,
+  emitEvent,
+  uploadToCloudinary,
+} from "../utils/features.js";
 import { ErrorHandler } from "../utils/utility.js";
+import fs from "fs";
 
 export const newGroupChat = TryCatch(async (req, res, next) => {
   const { name, members } = req.body;
@@ -181,7 +186,7 @@ export const removeMembers = TryCatch(async (req, res, next) => {
     });
   }
 
-  const allMembers=chat.members.map((i)=>i.toString())
+  const allMembers = chat.members.map((i) => i.toString());
 
   chat.members = chat.members.filter(
     (member) => member.toString() !== userId.toString()
@@ -273,6 +278,15 @@ export const sendAttachments = TryCatch(async (req, res, next) => {
   }
 
   const attachments = await uploadToCloudinary(files);
+
+  console.log("Cloudinary Upload Result:", attachments);
+
+  files.forEach((file) => {
+    fs.unlink(file.path, (err) => {
+      if (err) console.error("File delete error:", err);
+    });
+  });
+
   const messageForRealTime = {
     content: "",
     attachments,
@@ -303,33 +317,35 @@ export const sendAttachments = TryCatch(async (req, res, next) => {
 });
 
 export const getChatDetail = TryCatch(async (req, res, next) => {
-    const chatId = req.params.id; // Directly access req.params.id
-    // console.log("Received chatId:", chatId);
+  const chatId = req.params.id; // Directly access req.params.id
+  // console.log("Received chatId:", chatId);
 
-    if (req.query.populate === 'true') {
-        const chat = await Chat.findById(chatId).populate("members", "name avatar").lean(); // lean() is good practice for optimization
-        if (!chat) {
-            return next(new ErrorHandler("Chat not Found!", 400));
-        }
-        chat.members = chat.members.map(({ _id, name, avatar }) => ({
-            _id,
-            name,
-            avatar: avatar?.url, // Ensure avatar is safely accessed
-        }));
-        return res.status(200).json({
-            success: true,
-            chat,
-        });
-    } else {
-        const chat = await Chat.findById(chatId);
-        if (!chat) {
-            return next(new ErrorHandler("Chat not Found!", 400));
-        }
-        return res.status(200).json({
-            success: true,
-            chat,
-        });
+  if (req.query.populate === "true") {
+    const chat = await Chat.findById(chatId)
+      .populate("members", "name avatar")
+      .lean(); // lean() is good practice for optimization
+    if (!chat) {
+      return next(new ErrorHandler("Chat not Found!", 400));
     }
+    chat.members = chat.members.map(({ _id, name, avatar }) => ({
+      _id,
+      name,
+      avatar: avatar?.url, // Ensure avatar is safely accessed
+    }));
+    return res.status(200).json({
+      success: true,
+      chat,
+    });
+  } else {
+    const chat = await Chat.findById(chatId);
+    if (!chat) {
+      return next(new ErrorHandler("Chat not Found!", 400));
+    }
+    return res.status(200).json({
+      success: true,
+      chat,
+    });
+  }
 });
 
 export const RenameGroup = TryCatch(async (req, res, next) => {
@@ -400,9 +416,12 @@ export const getMessages = TryCatch(async (req, res, next) => {
   const chatId = req.params.id;
   const { page = 1 } = req.query;
   const limit = 20;
-  const chat=await Chat.findById(chatId)
-  if(!chat) return next(new ErrorHandler("Chat not found",404))
-  if(!chat.members.includes(req.user.toString())) return next(new ErrorHandler("You are not allowed to access this chat!",401))
+  const chat = await Chat.findById(chatId);
+  if (!chat) return next(new ErrorHandler("Chat not found", 404));
+  if (!chat.members.includes(req.user.toString()))
+    return next(
+      new ErrorHandler("You are not allowed to access this chat!", 401)
+    );
   const [message, totalMessagesCount] = await Promise.all([
     Message.find({ chat: chatId })
       .sort({ createdAt: -1 })

@@ -48,7 +48,9 @@ const Login = () => {
       dispatch(Userexist(true));
       toast.success(data.message);
     } catch (error) {
-      toast.error(error?.response?.data?.message?.toString() || "Something went wrong");
+      toast.error(
+        error?.response?.data?.message?.toString() || "Something went wrong"
+      );
     }
   };
 
@@ -126,6 +128,9 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   value={Username.value}
                   onChange={Username.changeHandler}
                   InputLabelProps={{ style: { color: "white" } }}
@@ -136,6 +141,9 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   type="password"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   InputLabelProps={{ style: { color: "white" } }}
                   onChange={password.changeHandler}
                   value={password.value}
@@ -155,7 +163,6 @@ const Login = () => {
                   color={"white"}
                   fontWeight={"900"}
                   letterSpacing={"0.5rem"}
-                  fullWidth
                   marginTop={"1rem"}
                 >
                   or
@@ -232,6 +239,9 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   InputLabelProps={{ style: { color: "white" } }}
                   value={name.value}
                   onChange={name.changeHandler}
@@ -242,6 +252,9 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   InputLabelProps={{ style: { color: "white" } }}
                   value={Username.value}
                   onChange={Username.changeHandler}
@@ -263,6 +276,9 @@ const Login = () => {
                   variant="outlined"
                   margin="normal"
                   multiline
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   InputLabelProps={{ style: { color: "white" } }}
                   value={bio.value}
                   onChange={bio.changeHandler}
@@ -274,6 +290,9 @@ const Login = () => {
                   variant="outlined"
                   type="password"
                   margin="normal"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   InputLabelProps={{ style: { color: "white" } }}
                   value={password.value}
                   onChange={password.changeHandler}
@@ -284,6 +303,9 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   type="password"
+                  inputProps={{
+                    style: { color: "white" },
+                  }}
                   margin="normal"
                   InputLabelProps={{ style: { color: "white" } }}
                   value={passwordConfirm}

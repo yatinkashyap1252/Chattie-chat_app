@@ -44,9 +44,10 @@ const Footer = () => {
   // Footer container style
   const footerStyle = {
     zIndex: "100",
-    height: "3rem",
+    height: "65px",
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
     position: "static",
     bottom: "0",
     padding: "5px",
