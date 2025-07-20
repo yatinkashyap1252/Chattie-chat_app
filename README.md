@@ -19,6 +19,22 @@ This is a real-time chat application built using the MERN stack (MongoDB, Expres
 - **Notifications**: Real-time notifications for new messages and events.
 
 ---
+## Screenshots
+
+Here are some visuals demonstrating the application:
+
+![Screenshot 1](./Screenshot%202025-07-21%20010452.png)
+![Screenshot 2](./Screenshot%202025-07-21%20010534.png)
+![Screenshot 3](./Screenshot%202025-07-21%20010559.png)
+![Screenshot 4](./screenshots/Screenshot%202025-07-21%20010612.png)
+![Screenshot 5](./screenshots/Screenshot%202025-07-21%20011009.png)
+![Screenshot 6](./screenshots/Screenshot%202025-07-21%20011056.png)
+![Screenshot 7](./screenshots/Screenshot%202025-07-21%20011123.png)
+![Screenshot 8](./screenshots/Screenshot%202025-07-21%20011140.png)
+![Screenshot 9](./screenshots/Screenshot%202025-07-21%20011150.png)
+![Screenshot 10](./screenshots/Screenshot%202025-07-21%20011208.png)
+![Screenshot 11](./screenshots/Screenshot%202025-07-21%20011220.png)
+
 
 ## Tech Stack
 
